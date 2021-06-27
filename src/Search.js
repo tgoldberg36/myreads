@@ -52,7 +52,7 @@ class Search extends Component {
               <ol className="books-grid">
                 {this.state.bookResults.length > 0 
                   ? this.state.bookResults.map(book => (
-                      <Book id={book.id} bookObj={book} moveBook={this.props.moveBook}/>
+                      <Book id={book.id} books={this.props.books} bookObj={book} moveBook={this.props.moveBook}/>
                     ))
                   : <h2>No results found</h2>
                 }

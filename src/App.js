@@ -10,7 +10,7 @@ class BooksApp extends Component {
     books: []
   }
   
-  componentDidMount() {
+  async componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
         this.setState(() => ({

@@ -6,7 +6,7 @@ class Book extends Component {
     this.props.moveBook(this.props.bookObj, event.target.value)}
   
   render() {
-    const { bookObj } = this.props 
+    const { books , bookObj } = this.props 
 
     const thumbnail = bookObj.imageLinks && bookObj.imageLinks.thumbnail
                         ? bookObj.imageLinks.thumbnail
@@ -16,6 +16,15 @@ class Book extends Component {
 
     const authors  = bookObj.authors ? bookObj.authors : 'No authors found';
 
+    let bookShelf = 'none';
+    
+    for(let currBook of books){
+      if(currBook.id === bookObj.id){
+        bookShelf = currBook.shelf;
+        break;
+      }
+    }
+
     return (
 		<div>
       		<li id={bookObj.id}>
@@ -23,7 +32,7 @@ class Book extends Component {
       				<div className="book-top">
                   <div className="book-cover"style={{ width: 128, height: 192, backgroundImage: `url(${thumbnail})` }}></div>
                     <div className="book-shelf-changer">
-                        <select onChange={this.moveHandle}>
+                        <select onChange={this.moveHandle} defaultValue={bookShelf}>
                           <option value="move" disabled>Move to...</option>
                           <option value="currentlyReading">Currently Reading</option>
                           <option value="wantToRead">Want to Read</option>
