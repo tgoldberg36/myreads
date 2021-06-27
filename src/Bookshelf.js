@@ -10,14 +10,14 @@ class Bookshelf extends Component {
       	const booksInShelf = books.filter((book) => (
     		book.shelf === shelf
     	)) 
-		
+
     	return  (
         	<div className="bookshelf">
           		<h2 className="bookshelf-title">{name}</h2>
 				<div className="bookshelf-books">
 					<ol className="books-grid">
 						{booksInShelf.map((book) => (
-                        	<Book bookObj={book} moveBook={moveBook}/>
+                        	<Book id={book.id} bookObj={book} moveBook={moveBook}/>
                         ))}
 					</ol>
 				</div>

@@ -20,7 +20,7 @@ class BooksApp extends Component {
   }
   
   moveBook = (movedBook, shelf) => {
-    console.log(movedBook)
+    //console.log(movedBook)
   	BooksAPI.update(movedBook,shelf)
     movedBook.shelf = shelf
     this.setState((currentState) => ({
@@ -33,7 +33,7 @@ class BooksApp extends Component {
       <div className="app">
         <Route exact path='/' render={() => (
           <div className="list-books">
-            {console.log(this.state.books)}
+            
             <div className="list-books-title">
                 <h1>MyReads</h1>
             </div>
@@ -44,14 +44,18 @@ class BooksApp extends Component {
             <Link 
               to='/search'
               className="open-search">
+                Add a Book
             </Link>
           </div>
         )} />
 
         <Route
             path="/search"
-            render={() => (
-              <Search  />
+            render={({history}) => (
+              <Search books={this.state.books} moveBook={(book,shelf) => {
+                this.moveBook(book,shelf)
+                history.push('/')
+              }}/>
         )} />
 	    </div>
     )
