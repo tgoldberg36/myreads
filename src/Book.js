@@ -20,6 +20,7 @@ class Book extends Component {
     
     for(let currBook of books){
       if(currBook.id === bookObj.id){
+        console.log(currBook.shelf);
         bookShelf = currBook.shelf;
         break;
       }
