@@ -71,7 +71,7 @@ class Search extends Component {
               <ol className="books-grid">
                 {verifiedBooks.length > 0 
                   ? verifiedBooks.map(book => (
-                      <Book id={book.id} books={this.props.books} bookObj={book} moveBook={this.props.moveBook}/>
+                      <Book key={book.id} books={this.props.books} bookObj={book} moveBook={this.props.moveBook}/>
                     ))
                   : <h2>No results found</h2>
                 }
