@@ -31,6 +31,25 @@ class Search extends Component {
     }
 
     render () {
+
+        const { books } = this.props;
+        const { bookResults } = this.state;
+
+        let verifiedBooks = [];
+        if(bookResults.length > 0){
+          verifiedBooks = bookResults.map(book => {
+          books.forEach(bookOnShelf => {
+          if(book.id === bookOnShelf.id) {
+            book.shelf = bookOnShelf.shelf;
+          }
+          });
+          return book;
+          });
+          console.log("verifiedBooks",verifiedBooks)
+        }
+
+
+
         return (
             <div className="search-books">
             <div className="search-books-bar">
@@ -50,8 +69,8 @@ class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                {this.state.bookResults.length > 0 
-                  ? this.state.bookResults.map(book => (
+                {verifiedBooks.length > 0 
+                  ? verifiedBooks.map(book => (
                       <Book id={book.id} books={this.props.books} bookObj={book} moveBook={this.props.moveBook}/>
                     ))
                   : <h2>No results found</h2>

@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
+import Shelfchanger from './Shelfchanger';
 
 class Book extends Component {
   
-  moveHandle = (event) => {
-    this.props.moveBook(this.props.bookObj, event.target.value)}
-  
   render() {
-    const { books , bookObj } = this.props 
+    const { books , moveBook, bookObj } = this.props 
 
     const thumbnail = bookObj.imageLinks && bookObj.imageLinks.thumbnail
                         ? bookObj.imageLinks.thumbnail
@@ -16,15 +14,7 @@ class Book extends Component {
 
     const authors  = bookObj.authors ? bookObj.authors : 'No authors found';
 
-    let bookShelf = 'none';
-    
-    for(let currBook of books){
-      if(currBook.id === bookObj.id){
-        console.log(currBook.shelf);
-        bookShelf = currBook.shelf;
-        break;
-      }
-    }
+    console.log(bookObj)
 
     return (
 		<div>
@@ -32,15 +22,7 @@ class Book extends Component {
       			<div className="book">
       				<div className="book-top">
                   <div className="book-cover"style={{ width: 128, height: 192, backgroundImage: `url(${thumbnail})` }}></div>
-                    <div className="book-shelf-changer">
-                        <select onChange={this.moveHandle} defaultValue={bookShelf}>
-                          <option value="move" disabled>Move to...</option>
-                          <option value="currentlyReading">Currently Reading</option>
-                          <option value="wantToRead">Want to Read</option>
-                          <option value="read">Read</option>
-                          <option value="none">None</option>
-                        </select>
-                    </div>
+                    <Shelfchanger moveBook={moveBook} bookObj={bookObj} books={books} />
                   </div>
                   <div className="book-title">{bookTitle}</div>
                 <div className="book-authors">{authors}</div>
