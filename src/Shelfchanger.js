@@ -5,7 +5,10 @@ class Shelfchanger extends Component {
     moveHandle = (event) => {
            this.props.moveBook(this.props.bookObj, event.target.value)}
 
+
     render () {
+        console.log(this.props.bookObj.shelf)
+
         return (
             <div className="book-shelf-changer">
                 <select onChange={this.moveHandle} defaultValue={this.props.bookObj.shelf ? this.props.bookObj.shelf : 'none'}>

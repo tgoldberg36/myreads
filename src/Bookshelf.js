@@ -15,7 +15,7 @@ class Bookshelf extends Component {
 				<div className="bookshelf-books">
 					<ol className="books-grid">
 						{booksInShelf.map((book) => (
-                        	<Book id={book.id} books={books} bookObj={book} moveBook={moveBook}/>
+                        	<Book key={book.id} books={books} bookObj={book} moveBook={moveBook}/>
                         ))}
 					</ol>
 				</div>
